@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>App Name: A Coding Challenge</title>
+  <title>Hundo: A Coding Challenge</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -28,8 +28,8 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/index.html"><img src="/img/brakcet_logo.png" height="40"
-            alt="Developer Logo">&nbsp; App Name</a>
+        <a class="navbar-brand" href="/index.html"><img src="/img/6.png" height="40" alt="Developer Logo">&nbsp;
+          Hundo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -61,11 +61,48 @@
   </header>
 
   <main class="container py-3">
-    <h1>APP UI GOES HERE</h1>
-    <input type="text" class="form-control" value="Something" id="message" placeholder="Enter a message" type="text">
-    <button id="btn-submit"  type="button" class="btn btn-primary my-3">Display
-      Message</button>
-<!-- onClick="displayMessage()"; -->
+    <div class="row row-cols-1 row-cols-md-2 gy-3">
+      <div class="col border-end border-start border-5">
+        <h1>Hundo: A Coding Challenge</h1>
+        <p class="lead">Live life one loop at a time! Hundo is a Javascript coding challenge using loops.
+          The objective is to write a program which diplays the even numbers from 0 to 100, with the even numbers in
+          <strong>BOLD</strong>.
+        </p>
+        <h2 class="mt-5 border-bottom border-5">Instructions</h2>
+        <p>Enter a starting value and an ending value. Press the button to the numbers on the page!</p>
+      </div>
+      <div class="col">
+        <h5>Enter values</h5>
+        <form action="#" class="row g-3">
+          <div class="col-6">
+            <label for="start-value" class="form-label">Start Value:</label>
+
+            <input type="number" id="start-value" name="start-value" type="number" placeholder="Start Value" value="1"
+              class="form-control" aria-label="Start Value">
+
+          </div>
+          <div class="col-6">
+            <label for="end-value" class="form-label">End Value:</label>
+
+            <input type="number" id="end-value" name="end-value" type="number" placeholder="End Value" value="100"
+              class="form-control" aria-label="End Value">
+          </div>
+          <div class="col-12 text-end">
+            <button id="btn-submit" type="button" class="btn btn-primary btn-lg">Display The Hundo</button>
+          </div>
+        </form>
+        <div class="card p-3 mt-3 shadow-sm">
+          <h2 class="mt-5 border-bottom border-2">Results</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <tbody id="results">
+                <!-- Results go here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- By default, text will be centered but on lrg screen sizes, the text will adjust -->
@@ -86,16 +123,17 @@
   </footer>
 
   <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/site.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/site.js"> </script>
 
   <script>
-  document.getElementById("btn-submit").addEventListener('click', displayMessage );
+    document.getElementById("btn-submit").addEventListener('click', getValues);
+
   </script>
- 
+
 
 </body>
 
