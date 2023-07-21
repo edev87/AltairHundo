@@ -28,7 +28,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/index.html"><img src="/img/6.png" height="40" alt="Developer Logo">&nbsp;
+        <a class="navbar-brand" href="/index.html"><img src="/img/zero-to-100-colored.png" height="40" alt="Developer Logo">&nbsp;
           Hundo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
               <a class="nav-link" href="/code.html">The Code</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://github.com/edev87">The Repo</a>
+              <a class="nav-link" target="_blank" href="https://github.com/edev87">The Repo</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://edevportfolio.com">About</a>
@@ -69,7 +69,7 @@
           <strong>BOLD</strong>.
         </p>
         <h2 class="mt-5 border-bottom border-5">Instructions</h2>
-        <p>Enter a starting value and an ending value. Press the button to the numbers on the page!</p>
+        <p>Enter a starting value and an ending value. Press the button to display the numbers on the page!</p>
       </div>
       <div class="col">
         <h5>Enter values</h5>
@@ -77,17 +77,18 @@
           <div class="col-6">
             <label for="start-value" class="form-label">Start Value:</label>
 
-            <input type="number" id="start-value" name="start-value" type="number" placeholder="Start Value" value="1"
+            <input type="text" id="start-value" name="start-value"  placeholder="Start Value" value="1"
               class="form-control" aria-label="Start Value">
 
           </div>
           <div class="col-6">
             <label for="end-value" class="form-label">End Value:</label>
 
-            <input type="number" id="end-value" name="end-value" type="number" placeholder="End Value" value="100"
+            <input type="text" id="end-value" name="end-value"  placeholder="End Value" value="100"
               class="form-control" aria-label="End Value">
           </div>
           <div class="col-12 text-end">
+            <button id="clear-btn" type="button" class="btn btn-info btn-lg">Clear Table</button>
             <button id="btn-submit" type="button" class="btn btn-primary btn-lg">Display The Hundo</button>
           </div>
         </form>
@@ -131,6 +132,7 @@
 
   <script>
     document.getElementById("btn-submit").addEventListener('click', getValues);
+    document.getElementById("clear-btn").addEventListener('click', clearTable )
 
   </script>
 

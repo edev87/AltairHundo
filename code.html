@@ -49,7 +49,7 @@
               <a class="nav-link active" href="/code.html">The Code</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://github.com/edev87">The Repo</a>
+              <a class="nav-link" target="_blank" href="https://github.com/edev87">The Repo</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://edevportfolio.com">About</a>
@@ -69,18 +69,93 @@
       <div class="col-12 col-lg-8">
         <pre class="line-numbers">
           <code class="language-js">
-            function displayMessage(){
-              let inputBox = document.getElementById("message");
-              let message = inputBox.value
+            // Get numbers from our form inputs
+            //ENTRY POINT
+            //Controller function
+            function getValues() {
+              let startNum = document.getElementById("start-value").value;  //out of scope, in a different scope
+              let endNum = document.getElementById("end-value").value;
             
-              Swal.fire(
-                {
-              backdrop: false,
-              title: 'Hundo',
-              text: message
+              startNum = Number(startNum);
+              endNum = Number(endNum);
+            
+              //input validation to make sure user is typing in numbers
+              if (isNaN(startNum) == true || isNaN(endNum) == true) {
+                Swal.fire({
+                  title: 'Oops!',
+                  text: 'Hundo only works with numbers',
+                  icon: 'error',
+                  backdrop: false
+                });
+            
+              } else if (startNum > endNum) {
+                //display an error message
+                Swal.fire({
+                  title: 'Oops!',
+                  text: 'The starting number must be less than the ending number',
+                  icon: 'error',
+                  backdrop: false
+                });
+            
+              } else if (endNum > 150) {
+                //display an error message
+                Swal.fire({
+                  title: 'Oops!',
+                  text: 'The starting number must be less than 150',
+                  icon: 'error',
+                  backdrop: false
+                });
+            
+              }else {
+            
+                let numberArray = generateNumbers(startNum, endNum)
+                displayNumbers(numberArray);
+            
+              }
+            
+            }
+            
+            //Business logic - creates every number in the input range
+            //Data Model
+            function generateNumbers(start, end) {  //start and end are parameters
+            
+              let range = [];
+            
+              for (let number = start; number <= end; number++) {
+                range.push(number);
+              }
+              return range;
+            }
+            
+            //put the numbers of page
+            //View Function
+            const displayNumbers = (numbersToDisplay) => {
+            
+              let tableHtml = '';
+            
+              for (let index = 0; index < numbersToDisplay.length; index++) {
+                let currentNumber = numbersToDisplay[index];
+            
+                let className = ''
+            
+                if (currentNumber % 2 === 0) {
+                  className = 'even';
+            
+                } else {
+                  className = 'odd';
                 }
-                );
             
+                let tableRowHtml = `&lt;tr>&lt;td class="${className}"> ${currentNumber}&lt;/td>&lt;/tr>`;
+                tableHtml += tableRowHtml;
+              }
+            
+              document.getElementById("results").innerHTML = tableHtml;
+            
+            
+            }
+            
+            const clearTable = () => {
+              document.getElementById("results").innerHTML = '';
             }
           </code>
         </pre>
@@ -88,11 +163,34 @@
 
       </div>
       <div class="col-12 col-lg-4">
-        <p>The code is structured in one function</p>
-        <h5>displayMessage</h5>
-        <p>Shows a SweetAlert with the value of the <code>
-          message
-        </code> variable</p>
+        <p>The code is structured in four function</p>
+        <h5>getValues</h5>
+        <p>
+          Takes the input that the users types and validates the input making sure the
+          user entered valid numbers within the range limit.
+        </p>
+        <h5>generateNumbers</h5>
+        <p>
+          Takes the parameters <code>start </code> and <code>end</code> that are passed as arguments from the function
+          <code>getValues()</code> and these two values are used to create a range of numbers that will be stored in
+          array called range.
+        </p>
+        <h5>displayNumbers</h5>
+        <p>
+          A for loop is used to interate over the range the user provided from the function
+          <code>getValues()</code> so that they can be placed into a table. As the loop is running, a
+          <code>if/else</code> statement
+          is used to determine which numbers are even or odd. Even numbers will be
+          displayed as bold and odd numbers will be displayed normally. After the numbers are classified, they are added
+          concatenated to the string <code>tableRowHtml</code> that is
+          used to build a table row with table data dyanmically. After the loop finishes, the string built with
+          <code>tableRowHtml</code> will be used to fill table with data.
+        </p>
+        <h5>clearTable</h5>
+        <p>
+         Used to clear the table if the user decides to empty the table of values at any time.
+        </p>
+
 
       </div>
     </div>

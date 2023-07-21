@@ -8,8 +8,39 @@ function getValues() {
   startNum = Number(startNum);
   endNum = Number(endNum);
 
-  let numberArray = generateNumbers(startNum, endNum)
-  displayNumbers(numberArray);
+  //input validation to make sure user is typing in numbers
+  if (isNaN(startNum) == true || isNaN(endNum) == true) {
+    Swal.fire({
+      title: 'Oops!',
+      text: 'Hundo only works with numbers',
+      icon: 'error',
+      backdrop: false
+    });
+
+  } else if (startNum > endNum) {
+    //display an error message
+    Swal.fire({
+      title: 'Oops!',
+      text: 'The starting number must be less than the ending number',
+      icon: 'error',
+      backdrop: false
+    });
+
+  } else if (endNum > 150) {
+    //display an error message
+    Swal.fire({
+      title: 'Oops!',
+      text: 'The starting number must be less than 150',
+      icon: 'error',
+      backdrop: false
+    });
+
+  }else {
+
+    let numberArray = generateNumbers(startNum, endNum)
+    displayNumbers(numberArray);
+
+  }
 
 }
 
@@ -18,7 +49,6 @@ function getValues() {
 function generateNumbers(start, end) {  //start and end are parameters
 
   let range = [];
-  
 
   for (let number = start; number <= end; number++) {
     range.push(number);
@@ -37,20 +67,23 @@ const displayNumbers = (numbersToDisplay) => {
 
     let className = ''
 
-    if(currentNumber % 2 === 0)
-    {
+    if (currentNumber % 2 === 0) {
       className = 'even';
 
-    }else{
+    } else {
       className = 'odd';
     }
 
     let tableRowHtml = `<tr><td class="${className}"> ${currentNumber} </td></tr>`;
-    tableHtml = tableHtml + tableRowHtml;
+    tableHtml += tableRowHtml;
 
   }
 
   document.getElementById("results").innerHTML = tableHtml;
 
 
+}
+
+const clearTable = () => {
+  document.getElementById("results").innerHTML = '';
 }
